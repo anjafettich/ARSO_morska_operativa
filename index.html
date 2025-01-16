@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>ARSO morska operativa</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Operativne suite";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> ARSO morska operativa
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Operativne suite</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#opis-morske-operativne-verige">Opis morske operativne verige</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#osnovna-struktura-suit">Osnovna struktura suit</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#get_initial">get_initial</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wam">wam</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nemo">nemo</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#zagon-brez-valovnega-modela">Zagon brez valovnega modela</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nemonadr">nemoNADR</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nemo_storm_surge">nemo_storm_surge</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#storm_surge_laef">storm_surge_laef</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hidra">hidra</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#plima">Plima</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hidra3">hidra3</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hidra3multi">hidra3multi</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hidra6day">hidra6day</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hf_radar">hf_radar</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#egafor">eGafor</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#uporabniki">uporabniki</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#validacija">validacija</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mfs">mfs</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#clean">clean</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitor">monitor</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#poganjanje-suit-za-nazaj">Poganjanje suit za nazaj</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="momo/">momo suite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="dinghy/">Hidra api</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="ecflow/">Ecflow okolje</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="tezave/">Morebitne težave</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="ptm/">Sledenje delcev</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="validation/">Validacija</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="arhiviranje/">Arhiviranje</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="susanovo/">Susanovo</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="todo/">To do</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">ARSO morska operativa</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Operativne suite</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="arso-morska-operativa">ARSO morska operativa</h1>
+<h2 id="opis-morske-operativne-verige">Opis morske operativne verige</h2>
+<p>Potrebni moduli (felicia):</p>
+<pre><code>/home/momo_si/oper/ecflow/$suiteName/include/prod/environment.h
+
+module load perfboost 
+module load antlr/2.7.7
+
+module load intel_fc/16.2 
+module load openmpi/4.0.3-intel 
+module load hdf5/1.10.6_intel  
+module load netcdf/4.7.3-intel-f 
+module load netcdf-fortran/4.5.2-intel-f
+
+module load cdo/1.9.8-f 
+module load proj/proj-7.0.0 
+module load ecCodes/2.16.0-intel 
+module load nco/4.9.2-f
+
+module load ecFlow/5.3.1-f
+</code></pre>
+<ul>
+<li><code>get_initial</code> - Prenos robnih in začetnih pogojev za vso morsko operativno verigo.</li>
+<li><code>wam</code> - Valovni model.</li>
+<li><code>nemo</code> - Jadranski oceanografski model.</li>
+<li><code>nemoNADR</code> - Severno Jadranski oceanografski model.</li>
+<li><code>nemo_storm_surge</code> - Nemo ansambli z ECMWF.</li>
+<li><code>storm_surge_laef</code> - Nemo ansambli z A-LAEF.</li>
+<li><code>hidra</code> - HIDRA2.0 napoved višine morja v Kopru.</li>
+<li><code>hidra3</code> - HIDRA3.0 napoved višine morja v Kopru.</li>
+<li><code>hidra3multi</code> - HIDRA3.0 multipoint napoved višine morja v Kopru.</li>
+<li><code>hidra6day</code> - HIDRA2.0 6 dnevna napoved višine morja v Kopru.</li>
+<li><code>hf_radar</code> - Prenos in diseminacija radarskih podatkov.</li>
+<li><code>eGafor</code> - Prenos in pretvorba eGafor datotek v Gafor za letalce.</li>
+<li><code>uporabniki</code> - Napovedi za luko Koper in za ARSO prognozo.</li>
+<li><code>validacija</code> - Priprava podatkov za online validacijo morskih modelov.</li>
+<li><code>monitor</code> - Nadzor ecflow suit.</li>
+<li><code>clean</code> - Brisanje operativnih produktov.</li>
+<li><code>mfs</code> - Priprava napovedi iz CMEMS produktov kot backup, če ni ARSO morskih produktov.</li>
+</ul>
+<h2 id="osnovna-struktura-suit">Osnovna struktura suit</h2>
+<p>Glavni direktorij:</p>
+<pre><code>/home/momo_si/oper/
+</code></pre>
+<p>Znotraj struktura:</p>
+<pre><code>/model/ - kode, source, pomožne datoteke
+/ecflow/ - ecflow skripte
+/log/ - izpis ecflow skript
+/rundir/ - delovni direktorij (shranjeno do 3 dni)
+/results/ - arhiv za tekoči mesec, shranjeni robni in začetni pogoji (ki jih 1x mesečno prekopiraš na trakove)
+/restart/ - datoteke, potrebne za nadaljni zagon WAM modela
+</code></pre>
+<p>Za vsako suito je struktura podobna:</p>
+<pre><code>/model/$suiteName/pyscripts/
+                 /aux/
+                 /bin/
+                 /source/ - pri hidrah
+
+/ecflow/$suiteName/prod/scripts/ - vse ecflow skripte
+                        /include/ - options.h, environment.h (potrebni moduli, okolje)
+                        /def/ - definition datoteka za ecflow suito
+                  /check/ - 5min pred začetkom suite pregleda status suite in jo reque-ja, če je to potrebno
+
+/log/$suiteName/ - tukaj se lahko preverja izpis ecflow skript (isto kar se vidi znotraj ecflow_ui, samo dostikrat deluje hitreje branje datoteke iz felicie kot znotraj ecflow_ui)
+
+/rundir/$suiteName/  (/mnt/ceph/oper/momo_si/rundir/)
+
+/results/$suiteName/ (/mnt/archive/momo_si/)
+</code></pre>
+<h2 id="get_initial">get_initial</h2>
+<pre><code>get_initial    
+prod/
+    get_atmo   # atmosferski pogoji
+    get_ocean  # oceanografski pogoji
+    get_rivers # pretoki rek
+</code></pre>
+<p>Prioriteta: visoka <br>
+Namen:</p>
+<pre><code>Prenos robnih in začetnih pogojev za vso morsko operativno verigo.
+</code></pre>
+<p>Osnovne informacije:</p>
+<pre><code>Izvede se 4x na dan:
+  00:15 UTC, 
+  02:15 UTC, 
+  12:15 UTC, 
+  18:15 UTC.
+</code></pre>
+<p>Suite:</p>
+<pre><code>get_atmo: atmosferski robni in začetni pogoji
+
+    get_aladin (/net/probase/model/aladin_si04ecda/incoming/asmomo_*.grb)
+    get_ecmwf (/net/probase/model/ecmwf/internet/SES*, /net/probase/model/ecmwf/internet/SED*)
+    get_ecmwf_wave (/net/probase/model/ecmwf/internet/SEQ*)
+    get_ens (/net/probase/model/ecmwf/internet/SEX*) 
+    get_laef (/home/a_si/oper/incoming/alaef/A-LAEF_MSEA_lalo_*_surface.grb)
+
+get_ocean: oceanografski robni in začetni pogoji
+
+    get_mfs (https://data.marine.copernicus.eu/products)
+    get_hourly_mfs (https://data.marine.copernicus.eu/products)
+    get_daily_mfs (https://data.marine.copernicus.eu/products)
+    get_72h_mfs (https://data.marine.copernicus.eu/products)
+
+get_rivers: pretoki rek
+
+    get_po (https://efas-sos.efas.eu/)
+    get_soca (/net/probase/model/hps/product/momo/ + odloži se na ARSO ftp za Borisa z MBP) 
+    get_rivers (https://efas-sos.efas.eu/)
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>/net/probase/
+Copernicus Marine Toolbox
+</code></pre>
+<p>Okolje za <a href="https://help.marine.copernicus.eu/en/articles/7970514-copernicus-marine-toolbox-installation">Copernicus Marine Toolbox</a> (orodje za download CMEMS)</p>
+<pre><code>export PYTHONPATH=$PYTHONPATH:/home/momo_si/miniconda3/envs/cmems/bin/python
+source /home/momo_si/miniconda3/bin/activate
+conda activate cmems
+</code></pre>
+<p>Trenutna verzija:</p>
+<pre><code>copernicusmarine --version
+8.1.2025 copernicusmarine, version 2.0.0
+</code></pre>
+<p>Treba spremljati objave CMEMS - ko objavijo novo verzijo, stara verzija deluje še samo 6 mesecev, potrebno narediti upgrade:</p>
+<pre><code>python -m pip install copernicusmarine --upgrade
+</code></pre>
+<h2 id="wam">wam</h2>
+<p>Prioriteta: visoka<br>
+Namen:</p>
+<pre><code>Izračun spektralnega valovnega modela nad območjem Jadrana do Afrike na jugu.
+</code></pre>
+<p>Osnovne informacije:</p>
+<ul>
+<li>Resolucija modela je 1/60°x1/60°</li>
+<li>Izračuna značilno višino valov, povprečno smer valov, maksimalno višino valov in frekvenco valovanja. </li>
+<li>Napoved za 72ur v naprej.</li>
+<li>Izračuna se 1x dnevno (3:15 UTC).</li>
+<li>Robni in začetni pogoji (VETER) iz ALADIN-a in ECMWF (izven ALADIN-ove domene na jugu). </li>
+</ul>
+<p>Vhod:</p>
+<ul>
+<li><code>asmomo_$RUNDATE00+00*.grb</code> - datoteke iz ALADIN-a (pripravlja NP)</li>
+<li><code>SED*</code> - ECMWF datoteke iz /net/probase/model/ecmwf/internet/ (pripravlja JO) </li>
+<li><code>LAW*, BLS*</code> - robni in začetni pogoji iz prejšnjega runa (/home/momo_si/oper/restart/) </li>
+</ul>
+<p>Izhod:</p>
+<ul>
+<li>/net/probase/ grib ... datoteke na /net/probase/ za VisPro, ARSOsplet, ...</li>
+<li>ftp.arso.sigov.si disseminacija produktov zunanjim uporabnikom (projekt I-Storms)</li>
+<li>/mnt/archive/momo_si/ modelski arhiv (robni in začetni pogoji)</li>
+<li>/mnt/ceph/oper/momo_si/restart/ robni in začetni pogoji (LAW<em>, BLS</em>)</li>
+<li>netcdf za vhod v PTM (Sledenje delcev)</li>
+<li>robni pogoji za NEMO</li>
+</ul>
+<p>Potrebna suita za vhod</p>
+<pre><code>get_initial/
+    get_aladin
+    get_ecmwf
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC felicia
+ALADIN (asmomo)
+ECMWF (SED*)
+viswe WMS
+ftp.arso.sigov.si
+/net/probase/
+/net/proarchive/
+wgrib, cdo, Python, fortran
+</code></pre>
+<p>Disseminacija:</p>
+<ul>
+<li><code>grib</code> - priprava urnih grib datotek z WAM napovedjo za VisPro</li>
+<li><code>extractFields</code> - priprava urnih netcdf datotek z WAM napovedjo</li>
+<li><code>upload2FTP</code> - kopira WAM grib datoteke na ARSO ftp za projekt I-Storms</li>
+<li><code>hidro</code> - ekstrakta napovedi iz modela WAM na lokacije boj</li>
+<li><code>database</code> - napovedi za v ARSO bazo</li>
+</ul>
+<h2 id="nemo">nemo</h2>
+<p>Prioriteta: visoka </p>
+<p>Namen:</p>
+<pre><code>Izračun morskega modela nad območjem Jadrana.
+</code></pre>
+<ul>
+<li>1.0 km hor.ločljivost</li>
+<li>33 globinskih nivojev</li>
+<li>Napoveduje temperaturo, slanost, tokove in elevacijo morja.</li>
+<li>Izračun za 72ur v naprej.</li>
+<li>Spin up 24h.</li>
+<li>Zagon 1x dnevno (4:00 UTC)</li>
+<li>Robni pogoji iz ALADIN-a, INGV MFS (CMEMS)</li>
+<li>Pretok iz Pada (EFAS) in Soče (MIKE)</li>
+<li>Začetni pogoji iz INGV MFS (CMEMS) </li>
+</ul>
+<p>Vhod:</p>
+<ul>
+<li><code>asmomo_$RUNDATE00+00*.grb</code> - Asmomo datoteke iz ALADIN-a (pripravlja NP)</li>
+<li>Urne INGV MFS datoteke iz COPERNICUS-a (https://nrt.cmems-du.eu): temperatura, slanost, tokovi, višina morja</li>
+<li>Dnevne INGV MFS datoteke (https://nrt.cmems-du.eu): temperatura, slanost</li>
+<li><code>PoRiver_$RUNDATE.csv</code> - Pretok Pad (EFAS portal)</li>
+<li><code>Soca_Q_Adriatic_$RUNDATE_00.txt</code> - Pretok Soča (MIKE - hidrologi) </li>
+<li><code>wam4_*.nc</code> - napoved valovnega modela (/home/momo_si/oper/rundir/wam/wam_$RUNDATE00/runwam_/)</li>
+</ul>
+<p>Plima:</p>
+<pre><code>/home/momo_si/TPXO8_tides_nemo4/OTPSnc
+</code></pre>
+<p>Nemo ima dva zagona:</p>
+<pre><code>run_nemo_tide: za VisPro
+run_nemo: vhodni podatki za nemoNADR
+</code></pre>
+<p>Izhod:</p>
+<pre><code>/net/probase/ grib ... datoteke na /net/probase/ za VisPro, ARSOsplet, ...
+ftp.arso.sigov.si disseminacija produktov zunanjim uporabnikom (projekt I-Storms)
+/mnt/archive/momo_si/ modelski arhiv (robni in začetni pogoji)
+netcdf ... datoteke za vhod v PTM (Particle Tracking)
+nemoNADR.grib ... datoteke na /net/probase/model/nemo_nadr
+...
+</code></pre>
+<p>Potrebna suita za vhod</p>
+<pre><code>get_initial
+    get_aladin
+    get_mfs
+    get_hourly_mfs
+    get_po
+    get_soca
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC forman
+ALADIN (asmomo)
+viswe WMS
+ftp.arso.sigov.si, /net/probase/, /net/proarchive/
+Python, cdo, nco, fortran
+</code></pre>
+<p>Disseminacija:</p>
+<ul>
+<li><code>extractNETCDF</code> - odstrani spin up iz napovedi, exstrakta površinske podatke za PTM</li>
+<li><code>nc2grib</code> - priprava grib datotek za VisPro </li>
+<li><code>extractFields</code> - pripravi podatke za PTM (nemo rezultati na površini + veter iz ALADINA)</li>
+<li><code>nemo2PTM</code> - naredi merge nemo napovedi za zadnjih 15 dni v NEMO_surface_input_PTM.nc, ki je vhod v PTM</li>
+<li><code>upload2FTP</code> - kopira nemo grib datoteke na ARSO ftp za projekt I-Storms</li>
+<li><code>hidro</code> - ekstrakta vodostaj iz modela nemo v Kopru</li>
+<li><code>bulletin</code> - priprava podatkov za morski bilten - trenutno ni operativno</li>
+</ul>
+<h3 id="zagon-brez-valovnega-modela">Zagon brez valovnega modela</h3>
+<pre><code>V primeru, da ni valovnega modela in želimo pognati nemo brez valov.
+</code></pre>
+<p>Potrebno spremeniti v <i>namelist.cfg</i> in v <i>options.h</i>. <br>
+Če želiš spremeniti samo trenutni run, potem spreminjaš <i>namelist_cfg</i> v $RUNDIR, če želiš dolgoročne spremembe, pa v <i>/aux/namelist_cfg</i>. <br></p>
+<pre><code>/home/momo_si/oper/model/nemo/aux/namelist_cfg
+/home/momo_si/oper/ecflow/nemo/include/options.h
+</code></pre>
+<p>V <i>namelist_cfg</i> je treba nastaviti:</p>
+<pre><code>ln_wave     = .false.
+</code></pre>
+<p>V <i>options.h</i>:</p>
+<pre><code>export iWAVE=false
+</code></pre>
+<h2 id="nemonadr">nemoNADR</h2>
+<p>Prioriteta: visoka</p>
+<p>Namen:</p>
+<pre><code>Izračun morskega modela nad območjem severnega Jadrana.
+</code></pre>
+<ul>
+<li>500m  hor.ločljivost.</li>
+<li>20 globinskih nivojev.</li>
+<li>Napoveduje temperaturo, slanost, tokove in elevacijo morja.    </li>
+<li>Napoved za 72ur v naprej.</li>
+<li>Zagon 1x dnevno. (5:00 UTC)</li>
+<li>Robni pogoji iz ALADIN-a, INGV MFS (CMEMS).</li>
+<li>Pretok iz Pada (EFAS) in Soče (MIKE).</li>
+<li>Začetni pogoji iz modela NEMO. </li>
+</ul>
+<p>Vhod:</p>
+<ul>
+<li><code>asmomo_$RUNDATE00+00*.grb</code> - Asmomo datoteke iz ALADIN-a (pripravlja NP)</li>
+<li><code>NEMO4adr_1h_$RUNDATE_grid_*.nc</code> - Netcdf iz modela NEMO (/home/momo_si/oper/rundir/nemo/nemo_$RUNDATE00//nemo/)</li>
+<li><code>PoRiver_$RUNDATE.csv</code> - Pretok Pad (EFAS portal)</li>
+<li><code>Soca_Q_Adriatic_$RUNDATE_00.txt</code> - Pretok Soča (MIKE - hidrologi)</li>
+</ul>
+<p>Plima:</p>
+<pre><code>/home/momo_si/TPXO8_tides_nemo4/OTPSnc
+</code></pre>
+<p>Izhod:</p>
+<pre><code>/net/probase/ grib ... datoteke na /net/probase/ za VisPro, ARSOsplet, ...  
+/mnt/archive/momo_si/ modelski arhiv (robni in začetni pogoji)
+netcdf ... datoteke za vhod v PTM (Particle Tracking)   
+netcdf TS ... odloži se na ARSO ftp za Borisa iz MBP
+...
+</code></pre>
+<p>Potrebna suita za vhod</p>
+<pre><code>get_initial
+    get_aladin   
+    get_po
+    get_soca 
+nemo
+    arhive_nemo
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC forman
+ALADIN (asmomo)
+NEMO
+viswe WMS
+ftp.arso.sigov.si, /net/probase/, /net/proarchive/
+Python, cdo, nco, fortran
+</code></pre>
+<h2 id="nemo_storm_surge">nemo_storm_surge</h2>
+<p>Prioriteta: visoka</p>
+<p>Namen:</p>
+<pre><code>Izračun ansambelskega morskega modela nad območjem Jadrana.
+</code></pre>
+<ul>
+<li>1.5 km hor.ločljivost</li>
+<li>21 globinskih nivojev</li>
+<li>50 ansamblov</li>
+<li>Napoveduje elevacijo morja.   </li>
+<li>Napoved do 72ur v naprej.</li>
+<li>Zagon 2x dnevno (9:00 UTC, 20:30 UTC)</li>
+<li>Robni pogoji ECMWF ansambli, INGV MFS.</li>
+<li>Pretok iz Pada in Soče.</li>
+<li>Začetni pogoji iz INGV MFS .</li>
+</ul>
+<p>Vhod:</p>
+<pre><code>ECMWF ansambelske datoteke iz /net/probase/model/ecmwf/internet/SEX* (pripravlja JO)
+
+urne INGV MFS datoteke iz COPERNICUS-a (https://nrt.cmems-du.eu): temperatura, slanost, tokovi, višina morja
+
+dnevne INGV MFS datoteke (https://nrt.cmems-du.eu)
+pretok Pad (EFAS), Soča(MIKE)
+</code></pre>
+<p>Izhod:</p>
+<pre><code>/net/probase/ png ... datoteke na /net/probase/ za VisPro,...
+...
+</code></pre>
+<p>Potrebna suita za vhod</p>
+<pre><code>get_initial
+    get_ens
+    get_mfs
+    get_hourly_mfs
+    get_po
+    get_soca
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC felicia
+ECMWF (SEX*)
+viswe WMS
+ftp.arso.sigov.si, /net/probase/, /net/proarchive/
+Python, cdo, nco, fortran, wgrib, ecCodes
+</code></pre>
+<h2 id="storm_surge_laef">storm_surge_laef</h2>
+<p>Prioriteta: nizka</p>
+<p>Namen:</p>
+<pre><code>Izračun ansambelskega morskega modela iz A-LAEF datotek nad območjem Jadrana.
+</code></pre>
+<ul>
+<li>1.5 km hor.ločljivost</li>
+<li>21 globinskih nivojev</li>
+<li>50 ansamblov</li>
+<li>Napoveduje elevacijo morja.   </li>
+<li>Napoved do 72ur v naprej.</li>
+<li>Zagon 2x dnevno (6:00 UTC, 16:00 UTC)</li>
+<li>Robni pogoji A-LAEF  ansambli, INGV MFS.</li>
+<li>Pretok iz Pada in Soče.</li>
+<li>Začetni pogoji iz INGV MFS .</li>
+</ul>
+<p>Vhod:</p>
+<pre><code>A-LAEF ansambelske datoteke iz /home/a_si/oper/incoming/alaef/A-LAEF_MSEA_lalo_*_surface.grb (pripravlja NP)
+
+urne INGV MFS datoteke iz COPERNICUS-a (https://nrt.cmems-du.eu): temperatura, slanost, tokovi, višina morja
+
+dnevne INGV MFS datoteke (https://nrt.cmems-du.eu)
+pretok Pad (EFAS), Soča(MIKE)
+</code></pre>
+<p>Izhod:</p>
+<pre><code>/net/probase/ png ... datoteke na /net/probase/ za VisPro,...
+...
+</code></pre>
+<p>Potrebna suita za vhod</p>
+<pre><code>get_initial
+    get_laef
+    get_mfs
+    get_hourly_mfs
+    get_po
+    get_soca
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC felicia
+ECMWF (SEX*)
+viswe WMS
+ftp.arso.sigov.si, /net/probase/, /net/proarchive/
+Python, cdo, nco, fortran, wgrib, ecCodes
+</code></pre>
+<h2 id="hidra">hidra</h2>
+<p>Potrebno okolje:</p>
+<pre><code># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/momo_si/miniconda3/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/momo_si/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/momo_si/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/momo_si/miniconda3/bin/:$PATH"
+    fi
+fi
+unset __conda_setup
+# &lt;&lt;&lt; conda initialize &lt;&lt;&lt;
+
+export PYTHONPATH=$PYTHONPATH:/home/momo_si/miniconda3/envs/pytorch/bin/python
+source /home/momo_si/miniconda3/bin/activate
+
+conda activate pytorch
+</code></pre>
+<p>Prioriteta: visoka</p>
+<p>Namen:</p>
+<pre><code>Izračun višine morja v Kopru (AI).
+</code></pre>
+<p>Osnovne informacije:</p>
+<ul>
+<li>Napoved za 72ur v naprej.</li>
+<li>Poganja se 1x na uro.</li>
+<li>Robni pogoji ECMWF ansambli.</li>
+<li>Meritve v Kopru iz ARSO baze. </li>
+</ul>
+<p>Vhod:</p>
+<ul>
+<li><code>SEX*</code> - ECMWF ansambelske datoteke iz /net/probase/model/ecmwf/internet/ (pripravlja JO)</li>
+<li><code>mareografKP_vodostaj.txt</code> - meritve vodostaja v Kopru iz ARSO baze.</li>
+<li><code>tide.csv</code> - plima v Kopru (za 1 leto).</li>
+</ul>
+<p>Izhod:</p>
+<pre><code>/net/probase/ png ... datoteke na /net/probase/ za VisPro,...
+...
+</code></pre>
+<p>Potrebna suita za vhod</p>
+<pre><code>get_initial/
+    get_ens
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC forman
+ECMWF (SEX*)
+viswe WMS
+/net/probase/
+Python (tensorFlow),cdo, wgrib, ecCodes
+</code></pre>
+<h3 id="plima">Plima</h3>
+<p>Konec leta je potrebno izračunati plimo za naslednje leto: <br></p>
+<pre><code>/home/momo_si/oper/model/hidra/source/HIDRA2.2/calc_tide/calc_tides_1_year_Koper.py
+</code></pre>
+<p>Uzračuna tide.csv, ki jo je potrebno skopirati v:</p>
+<ul>
+<li>/home/momo_si/oper/model/hidra/aux/</li>
+<li>/home/momo_si/oper/model/hidra3/aux/</li>
+<li>/home/momo_si/oper/model/hidra3multi/aux/</li>
+<li>/home/momo_si/oper/model/hidra6day/aux/</li>
+<li>/home/momo_si/oper/model/uporabniki/aux/</li>
+</ul>
+<p>Za hidra3multi je potrebno izračunati plime za vse lokacije:</p>
+<pre><code>/home/momo_si/oper/model/hidra3multi/source/HIDRA3multi/calc_tide/calc_tides_1_year.py
+</code></pre>
+<p>Plime je nato potrebno skopirati v:</p>
+<ul>
+<li>/home/momo_si/oper/model/hidra3multi/aux/</li>
+</ul>
+<p>Prav tako je potrebno 30min plime naložiti na probase za VodePro (ureja MM).</p>
+<pre><code>/net/probase/fproduct/smmo/TideForecast_UTIDEpy_$YYYY_30min.csv
+</code></pre>
+<h2 id="hidra3">hidra3</h2>
+<p>Potrebno okolje:</p>
+<pre><code># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/momo_si/miniconda3/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/momo_si/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/momo_si/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/momo_si/miniconda3/bin/:$PATH"
+    fi
+fi
+unset __conda_setup
+# &lt;&lt;&lt; conda initialize &lt;&lt;&lt;
+
+export PYTHONPATH=$PYTHONPATH:/home/momo_si/miniconda3/envs/pytorch/bin/python
+source /home/momo_si/miniconda3/bin/activate
+
+conda activate pytorch
+</code></pre>
+<p>Prioriteta: visoka</p>
+<p>Namen:</p>
+<pre><code>Izračun višine morja v Kopru (AI).
+</code></pre>
+<p>Osnovne informacije:</p>
+<ul>
+<li>Napoved za 72ur v naprej.</li>
+<li>Poganja se 1x na uro.</li>
+<li>Robni pogoji ECMWF ansambli.</li>
+<li>Meritve v Kopru iz ARSO baze. </li>
+</ul>
+<p>Vhod:</p>
+<ul>
+<li><code>SEX*</code> - ECMWF ansambelske datoteke iz /net/probase/model/ecmwf/internet/ (pripravlja JO).</li>
+<li><code>mareografKP_vodostaj.txt</code> - meritve vodostaja v Kopru iz ARSO baze.</li>
+<li><code>tide.csv</code> - plima v Kopru (za 1 leto).                          </li>
+</ul>
+<p>Izhod:</p>
+<pre><code>/net/probase/ png ... datoteke na /net/probase/ za VisPro,...
+.json za vizualizacijo Lojze/Marko preko Hidra api-ja.
+</code></pre>
+<p>Potrebna suita za vhod</p>
+<pre><code>get_initial/
+    get_ens
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC forman
+ECMWF (SEX*)
+viswe WMS
+/net/probase/
+Python (tensorFlow),cdo, wgrib, ecCodes
+</code></pre>
+<p>Za hidra vizualizacijo od Lojzeta se kopira rezultate Hidre3 (.json) v skripti:</p>
+<pre><code>/home/momo_si/oper/ecflow/hidra3/scripts/prod/archive/archive_hidra3.ecf
+
+cp -f  ${WORKDIR}/Hidra3_${RUNDATE}_${hourR}.json  /scratch/jjerman/metSrvData/gribs/Hydra/Hidra_${RUNDATE}00.json
+</code></pre>
+<p>Kopira se tudi rezultate za nazaj,ker je na /scratch naštimano brisanje starejših datotek kot 2 dni:</p>
+<pre><code>cp -f /home/momo_si/results_oper/hidra3/hidra3_results/hidra3Files/Hidra_${YEAR}${month}*.json /scratch/jjerman/metSrvData/gribs/Hydra/ || true
+cp -f /home/momo_si/results_oper/hidra3/hidra3_results/hidra3Files/Hidra_${YEAR}${lastmonth}*.json /scratch/jjerman/metSrvData/gribs/Hydra/ || true
+</code></pre>
+<p>Ti rezultati so potem vidni izven ARSO preko Hidra apija, ki teče na Dinghyu (zavihek Hidra Api).</p>
+<h2 id="hidra3multi">hidra3multi</h2>
+<p>Potrebno okolje:</p>
+<pre><code># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/momo_si/miniconda3/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/momo_si/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/momo_si/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/momo_si/miniconda3/bin/:$PATH"
+    fi
+fi
+unset __conda_setup
+# &lt;&lt;&lt; conda initialize &lt;&lt;&lt;
+
+export PYTHONPATH=$PYTHONPATH:/home/momo_si/miniconda3/envs/pytorch/bin/python
+source /home/momo_si/miniconda3/bin/activate
+
+conda activate pytorch
+</code></pre>
+<p>Prioriteta: visoka</p>
+<p>Namen:</p>
+<pre><code>Izračun višine morja v Kopru (AI).
+</code></pre>
+<p>Osnovne informacije:</p>
+<ul>
+<li>Napoved za 72ur v naprej.</li>
+<li>Poganja se 1x na uro.</li>
+<li>Robni pogoji ECMWF ansambli.</li>
+<li>Meritve v Kopru iz ARSO baze.</li>
+<li>Meritve Italijanskih postaj iz <a href="https://www.ioc-sealevelmonitoring.org">IOC</a>.</li>
+<li>Napoved se naredi, tudi če manjkajo podatki iz nekaterih postaj.</li>
+</ul>
+<p>Vhod:</p>
+<ul>
+<li><code>SEX*</code> - ECMWF ansambelske datoteke iz /net/probase/model/ecmwf/internet/ (pripravlja JO)</li>
+<li><code>mareografKP_vodostaj.txt</code> - meritve vodostaja v Kopru iz ARSO baze.</li>
+<li><code>Meritve</code> vodostaja iz Ancone, Ortone, Ravenne, Sobre, StaregaGradu, Benetk in Vieste.</li>
+<li><code>tide.csv</code> - plima v Kopru.</li>
+<li><code>tides_Ancona.csv</code> - plima v Anconi. </li>
+<li><code>tides_Ortona.csv</code> - plima v Ortoni.</li>
+<li><code>tides_Ravenna (Porto Corsini).csv</code> - plima v Ravenni. </li>
+<li><code>tides_Sobra.csv</code> - plima v Sobri. </li>
+<li><code>tides_Stari Grad.cs</code> - plima Stari Grad. </li>
+<li><code>tides_Venice.csv</code> - plima v Benetkah. </li>
+<li><code>tides_Vieste.csv</code> - plima v Vieste. </li>
+</ul>
+<p>Izhod:</p>
+<pre><code>/net/probase/ png ... datoteke na /net/probase/ za VisPro,...
+...
+</code></pre>
+<p>Potrebna suita za vhod</p>
+<pre><code>get_initial/
+    get_ens
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC forman
+ECMWF (SEX*)
+viswe WMS
+/net/probase/
+Python (tensorFlow),cdo, wgrib, ecCodes, curl
+</code></pre>
+<p>Računanje plim (potrebno narediti konec leta):</p>
+<pre><code>/home/momo_si/oper/model/hidra3multi/source/HIDRA3multi/calc_tide/calc_tides_1_year.py
+</code></pre>
+<h2 id="hidra6day">hidra6day</h2>
+<p>Potrebno okolje:</p>
+<pre><code># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/momo_si/miniconda3/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/momo_si/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/momo_si/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/momo_si/miniconda3/bin/:$PATH"
+    fi
+fi
+unset __conda_setup
+# &lt;&lt;&lt; conda initialize &lt;&lt;&lt;
+
+export PYTHONPATH=$PYTHONPATH:/home/momo_si/miniconda3/envs/pytorch/bin/python
+source /home/momo_si/miniconda3/bin/activate
+
+conda activate pytorch
+</code></pre>
+<p>Prioriteta: visoka</p>
+<p>Namen:</p>
+<pre><code>Izračun višine morja v Kopru (AI).
+</code></pre>
+<p>Osnovne informacije:</p>
+<ul>
+<li>Napoved za 6dni v naprej.</li>
+<li>Poganja se 1x na dan.</li>
+<li>Robni pogoji ECMWF ansambli.</li>
+<li>Meritve v Kopru iz ARSO baze. </li>
+</ul>
+<p>Vhod:</p>
+<ul>
+<li><code>SEX*</code> - ECMWF ansambelske datoteke iz /net/probase/model/ecmwf/internet/ (pripravlja JO).</li>
+<li><code>mareografKP_vodostaj.txt</code> - meritve vodostaja v Kopru iz ARSO baze.</li>
+<li><code>tide.csv</code> - plima v Kopru (za 1 leto).   </li>
+</ul>
+<p>Izhod:</p>
+<pre><code>/net/probase/ png ... datoteke na /net/probase/ za VisPro,...
+...
+</code></pre>
+<p>Potrebna suita za vhod</p>
+<pre><code>get_initial/
+    get_ens
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC forman
+ECMWF (SEX*)
+viswe WMS
+/net/probase/
+Python (tensorFlow),cdo, wgrib, ecCodes
+</code></pre>
+<h2 id="hf_radar">hf_radar</h2>
+<p>Prioriteta: visoka</p>
+<p>Namen:</p>
+<pre><code>Prenos in pretvorba podatkov o tokovanju v Tržaškem zalivu iz wera hf radarja iz MBP NIB.
+Prenaša vsakih 15min.
+</code></pre>
+<p>Vhod:</p>
+<pre><code>geojson datoteke na MBP web appiju (skrbnik Damir Deželjin)
+</code></pre>
+<p>Izhod:</p>
+<pre><code>csv ... datoteke na /net/probase/ za arhiv
+grib ... datoteke na /net/probase/observ/hfradar/incoming/ za ARSOsplet
+
+geojson ... datoteke na /net/probase/observ/hfradar/geojson/ za VodePro
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC forman
+viswe WMS
+/net/probase/, /net/proarchive/
+Python
+</code></pre>
+<h2 id="egafor">eGafor</h2>
+<p>Prioriteta: visoka || trnutno ni operativno zaradi težav s cephom in posledično prevelikim izpadom podatkov.</p>
+<p>Namen / Osnovna informacija:</p>
+<pre><code>Priprava produktov za letalsko prognozo.
+Pretvorba eGafor produktov v Gafor.
+Teče vsake 3min.
+</code></pre>
+<p>Vhod:</p>
+<pre><code>geojson datoteke na /net/probase/fproduct/aviation/egafor/ iz MovingWeather kanal 80:50
+</code></pre>
+<p>Izhod:</p>
+<pre><code>dat ... datoteke na /net/probase/www/aviation/fproduct/bulletin/ za ARSOsplet
+
+dat ... datoteke na opacus1:/home/fpsite/clean/metbrnik_n za MovingWeather kanal 98:80
+png, pdf... datoteke na /net/probase/www/aviation/fproduct/graphic/ za ARSOsplet, letališče LJCE, arhiv
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC forman
+viswe WMS
+/net/probase/
+opacus
+Python
+</code></pre>
+<h2 id="uporabniki">uporabniki</h2>
+<p>Prioriteta: visoka</p>
+<p>Namen:</p>
+<pre><code>Priprava morskih produktov za hidrološko prognozo in luko Koper.
+</code></pre>
+<p>Osnovna informacija:</p>
+<pre><code>lukaKP - napoved višine morja v Kopru za Luko Koper
+prognoza - risanje grafov za višino morja iz nemo_storm_surge in storm_surge_laef za VisPro (grafi se vsako uro osvežijo z zadnjimi meritvami in z bias correction)
+hidra - risanje grafov iz modela Hidra in Hidra6day, kjer se vsako uro doda še zadnje meritve v Kopru (osveži se vse urne grafe za zadnje dva dni)
+hidra3 - risanje grafov iz modela Hidra3, kjer se vsako uro doda še zadnje meritve v Kopru (osveži se vse urne grafe za zadnje dva dni)
+hidra3multi- risanje grafov iz modela Hidra3multi, kjer se vsako uro doda še zadnje meritve v Kopru (osveži se vse urne grafe za zadnje dva dni)
+wera - priprava meritev iz hf radarja za aplikacijo Sledenje delcev.
+validacija - downloadanje vseh meritev v Kopru in na bojah za potrebe validacije
+</code></pre>
+<p>Vhod:</p>
+<pre><code>datoteke iz modela nemo_storm_surge
+datoteke iz modela hidra
+meritve v Kopru iz ARSO baze
+</code></pre>
+<p>Izhod:</p>
+<pre><code>png ... datoteke na /net/probase/ za VisPro (prognoza),...
+png, json ... datoteke na /net/probase/fproduct/customer/lukakp/marine4lukakp/ za luko Koper
+</code></pre>
+<p>Potrebna suita za vhod</p>
+<pre><code>nemo_storm_surge
+hidra 
+hidra3
+hidra3multi
+hidra6day
+hf_radar
+</code></pre>
+<p>Potrebni sistemi, programi</p>
+<pre><code>HPC forman
+viswe WMS
+/net/probase/, /net/proarchive/
+Python
+</code></pre>
+<p>Potrebno konec leta zamenjati tide.csv.</p>
+<h2 id="validacija">validacija</h2>
+<p>Namen:</p>
+<pre><code>Download in priprava napovedi MFS za online validacijo.
+</code></pre>
+<p>Izhod:</p>
+<p>Podatki se downloadajo, pretvorijo v .pickle in kopirajo v arhiv:</p>
+<pre><code>/home/momo_si/oper/rundir/validacija/
+</code></pre>
+<h2 id="mfs">mfs</h2>
+<p>Prioriteta: nizka</p>
+<p>Namen:</p>
+<pre><code>prenos oceanografskih produktov iz INGV MFS (https://nrt.cmems-du.eu) za primer, da ni podatkov iz naše operativne morske verige
+prenos ALADIN asmomo grib datotek
+priprava diseminacijskih produktov morske verige
+</code></pre>
+<p>Vhod:</p>
+<pre><code>get_ocean (INGC MFS)
+get_atmo (ALADIN - asmomo)
+get_wave (INGV MFS)
+get_kp: meritve v Kopru iz ARSO baze
+</code></pre>
+<p>Potrebni sistemi, programi
+    motuclient (Python) </p>
+<h2 id="clean">clean</h2>
+<pre><code>Brisanje pripravljenih morskih produktov za uporabnike, prognozo,...
+</code></pre>
+<ul>
+<li>/net/probase/fproduct/customer/lukakp/marine4lukakp</li>
+<li>/mnt/archive/momo_si/hf_radar</li>
+<li>wam, nemo in nemoNADR tekoči arhiv v results_oper (starejše od 1 meseca)</li>
+<li>/net/probase/www/observ/hfradar datoteke za ARSO splet</li>
+<li>/net/www/model/smmo/ datoteke za ARSO splet</li>
+<li>PTM input datoteke v results_oper (starejše od 2 mesecev)</li>
+<li>PTM rezultate starejše od 1 dneva </li>
+</ul>
+<h2 id="monitor">monitor</h2>
+<pre><code>Cleanup ecflow jobov.
+</code></pre>
+<p>Nevina skripta, ki pregleduje, če jobi pravilno tečejo, npr. če ostanejo v ecFlow running jobi, ki jih več ni v PBS - te jobe postavi na abort, prav tako bash jobe, ki ostanejo sumibttani, pa ne tečejo,...vglavnem cleanup jobov.</p>
+<pre><code>/home/momo_si/oper/model/monitor/bin/monitor_activesubmitted_ecflow_jobs.py
+</code></pre>
+<h2 id="poganjanje-suit-za-nazaj">Poganjanje suit za nazaj</h2>
+<p>Suite, ki imajo samo en run na dan, se požene za nazaj tako, da v <b>options.h</b> nastavis </p>
+<pre><code>export RUNDATE=20250101
+</code></pre>
+<p>Pri suitah, ki imajo več runov na dan, pa je potrebno nastaviti tudi uro.</p>
+<pre><code>export RUNDATE=20250202
+export RUNDATE1='20250202 15:00'
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="momo/" class="btn btn-neutral float-right" title="momo suite">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="momo/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2025-01-16 12:08:01.610021+00:00
+-->

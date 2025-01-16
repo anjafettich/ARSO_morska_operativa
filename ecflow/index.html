@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Ecflow okolje - ARSO morska operativa</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Ecflow okolje";
+        var mkdocs_page_input_path = "ecflow.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ARSO morska operativa
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Operativne suite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../momo/">momo suite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dinghy/">Hidra api</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Ecflow okolje</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tezave/">Morebitne težave</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ptm/">Sledenje delcev</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Validacija</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arhiviranje/">Arhiviranje</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../susanovo/">Susanovo</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../todo/">To do</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ARSO morska operativa</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Ecflow okolje</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ecflow">ecFlow</h1>
+<p>Uporablja se ecFlow verzija 5 server na formanu,</p>
+<p>ecFlow_ui poganjamo pod svojim uporabniškim imenom (zaenkrat ni nobene zaščite)</p>
+<p>Za zagon operativnih ecflow serverjev skrbi root, preverja na 5 minut, zamik 60 sek, da je po reboot čas, da so dostopni moduli,
+Operativni ecflow serverji:</p>
+<pre><code>a_si
+camx 
+nowcast 
+momo_si 
+mospro 
+momo
+</code></pre>
+<p>Felicia root cron:</p>
+<pre><code>*/5 * * * * sleep 60; /root/bin/check_ecflow_server.sh 1&gt;&gt; /var/log/check_ecflow_server.log 2&gt;&amp;1 &amp;
+*/5 * * * * /root/bin/check_ecflow_server_5_5_3.sh 1&gt;&gt; /var/log/check_ecflow_server_5_5_3.log 2&gt;&amp;1 &amp;
+</code></pre>
+<p>Vsak uporabnik sam zažene svoj ecflow server:</p>
+<pre><code>module load python2/2.7.11 ecFlow/5.3.1-f
+ecflow_start.sh 
+host=$(hostname)
+server port number($ECF_PORT number) - default 1500 + $UID
+</code></pre>
+<h1 id="ecflow-server">ecflow server</h1>
+<p>V noči iz četrtka na petek spravi in počisti ecf.log datoteko.</p>
+<p>Felicia momo_si cron</p>
+<pre><code>58 23 * * 4 /home/momo_si/ecflow_server/saveandclear_ecflog.sh 11593 1&gt; /dev/null 2&gt;&amp;1 &amp;
+</code></pre>
+<p>ecflow log server da lahko spremljamo output datoteke tudi ko poženemo ecflow_ui na lokalnem računalniku </p>
+<p>Potrebne tudi default končnice (kot v ecmwf) task.jobTRYNO.jid (namesto task.q), task.jobTRYNO, task.TRYNO (namesto task.jobTRYNO.eo)</p>
+<h1 id="ecflow_ui">ecflow_ui</h1>
+<p>Naloži potrebne module:</p>
+<pre><code>module load python2/2.7.11   
+module load ecFlow/5.3.1-f
+</code></pre>
+<p>Zaženi <i>ecFlow_ui</i> pod svojim uporabniškim imenom (zaenkrat ni nobene zaščite).
+vključi si prikaz serverja.</p>
+<pre><code>"momo_si"   ecfport=11593 host=felicia 
+"momo"      ecfport=11576 host=felicia
+"myrs"      ecfport=3142  host=ecflow-oper1.arso.sigov.si
+</code></pre>
+<h1 id="nadzorni-sistem-icinga">Nadzorni sistem ICINGA</h1>
+<p>Na vsako minuto izvede skripto, ki preveri status določene suite.</p>
+<ul>
+<li>ob spremembah (nove suite, ...) potrebno preveriti, prilagoditi - izpisuje log datoteko, ki mora imeti zaščito (-rw-rw-rw-)</li>
+<li>tudi direktorij drwxrwxrwx /home/momo_si/oper/controlnagios/ </li>
+</ul>
+<h1 id="ganglia">Ganglia</h1>
+<pre><code>Pregled vseh node-ov na felicii, load, cpu,...
+
+http://formana/ganglia/
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../dinghy/" class="btn btn-neutral float-left" title="Hidra api"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tezave/" class="btn btn-neutral float-right" title="Morebitne težave">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../dinghy/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tezave/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>momo suite - ARSO morska operativa</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "momo suite";
+        var mkdocs_page_input_path = "momo.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ARSO morska operativa
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Operativne suite</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">momo suite</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#vg2021">vg2021</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hidrolog">hidrolog</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dinghy/">Hidra api</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ecflow/">Ecflow okolje</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tezave/">Morebitne težave</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ptm/">Sledenje delcev</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Validacija</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arhiviranje/">Arhiviranje</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../susanovo/">Susanovo</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../todo/">To do</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ARSO morska operativa</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">momo suite</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="momo-suite">momo suite</h1>
+<h2 id="vg2021">vg2021</h2>
+<p>Namen:</p>
+<pre><code>Download datotek za routing Dorado - GFS, ARPEGE, CMEMS.
+Downloadanje poteka tudi izven Vendee Globe, ker se routing uporablja tudi za druge regate.
+</code></pre>
+<p>Za download CMEMS je potreben Copernicus Marine Toolbox.</p>
+<pre><code>https://help.marine.copernicus.eu/en/articles/7970514-copernicus-marine-toolbox-installation
+</code></pre>
+<p>Okolje za <a href="https://help.marine.copernicus.eu/en/articles/7970514-copernicus-marine-toolbox-installation">Copernicus Marine Toolbox</a> (orodje za download CMEMS)</p>
+<pre><code>export PYTHONPATH=$PYTHONPATH:/home/momo/miniconda3/envs/copernicus/bin/python
+source /home/momo/miniconda3/bin/activate
+conda activate copernicus
+</code></pre>
+<p>Trenutna verzija:</p>
+<pre><code>copernicusmarine --version
+8.1.2025 copernicusmarine, version 2.0.0
+</code></pre>
+<p>Treba spremljati objave CMEMS - ko objavijo novo verzijo, stara verzija deluje še samo 6 mesecev, potrebno narediti upgrade:</p>
+<pre><code>python -m pip install copernicusmarine --upgrade
+</code></pre>
+<p>Težave:</p>
+<ul>
+<li>Občasno se pojavljajo aborti pri <b>/sort_gribs</b> - ta težava je povezana s tem, da nekatere prenešene datoteke nimajo vseh potrebnih timestepov - nimaš kaj narediti (ansamble predolgo downloada, da bi na tej točki se še enkrat pognalo skripto)</li>
+<li>Reagiraš samo, če se pojavljajo aborti v <b>/get_files</b> - pogledaš v output, kaj je narobe, probaš še enkrat pognati skripto...</li>
+</ul>
+<h2 id="hidrolog">hidrolog</h2>
+<pre><code>Izračun ekstremov za meritve vodostaja v Kopru za v ARSO bazo (podatke dalje obdeluje Vesna Vidmar).
+</code></pre>
+<ul>
+<li>Skripta se izvede 1x mesečno in pripravi podatke za prejšnji mesec.</li>
+<li>Podatki se kopirajo na /net/probase/fproduct/smmo/</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Operativne suite"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dinghy/" class="btn btn-neutral float-right" title="Hidra api">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../dinghy/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

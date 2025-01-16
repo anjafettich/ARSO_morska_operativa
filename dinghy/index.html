@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Hidra api - ARSO morska operativa</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Hidra api";
+        var mkdocs_page_input_path = "dinghy.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ARSO morska operativa
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Operativne suite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../momo/">momo suite</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Hidra api</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pregled-rezultatov-na-serverju-gea">Pregled rezultatov na serverju gea:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#git">Git:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vhodni-podatki">Vhodni podatki</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ecflow/">Ecflow okolje</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tezave/">Morebitne težave</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ptm/">Sledenje delcev</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Validacija</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arhiviranje/">Arhiviranje</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../susanovo/">Susanovo</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../todo/">To do</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ARSO morska operativa</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Hidra api</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="hidra-api">Hidra api</h1>
+<p>Api za servis podatkov od Hidra3.0 za online aplikacijo Lojze/Marko.
+Docker teče na dinghyu.</p>
+<p><a href="https://lojzezust.github.io/hidra-visualization/en/">Hidra vizualizacija</a>.</p>
+<p>Poženeš docker hidra:</p>
+<pre><code>docker-compose up -d --build
+</code></pre>
+<p>Za debugging brez detached:</p>
+<pre><code>docker-compose up -- build
+docker-compose down
+
+docker inspect hidra
+docker logs traefik | grep hidra
+</code></pre>
+<p>Interaktivno gres v docker in lahko spreminjaš datoteke znotraj tega dockerja</p>
+<pre><code>docker exec -it hidra bash
+</code></pre>
+<h2 id="pregled-rezultatov-na-serverju-gea">Pregled rezultatov na serverju gea:</h2>
+<pre><code>https://gea.arso.gov.si/vg2020-dev/hidra/showHIDRAjson?date=2021041500
+https://gea.arso.gov.si/vg2020-dev/hidra/listHIDRAjson
+</code></pre>
+<p>Get json:</p>
+<pre><code>wget  --output-document=test.json  https://gea.arso.gov.si/vg2020-dev/hidra/showHIDRAjson?date=2021041500
+</code></pre>
+<p>Vhod:</p>
+<ul>
+<li><code>Hidra*.json</code>, ki se kopirajo na /scratch/jjerman/metSrvData/Hydra/</li>
+</ul>
+<h2 id="git">Git:</h2>
+<pre><code>http://gitportal.arso.sigov.si/afettich/hidra
+</code></pre>
+<h2 id="vhodni-podatki">Vhodni podatki</h2>
+<p>Vhodni podatki so napovedi Hidra3 (.json), ki jih na /scratch kopira skripta:</p>
+<pre><code>/home/momo_si/oper/ecflow/hidra3/scripts/prod/archive/archive_hidra3.ecf
+
+cp -f  ${WORKDIR}/Hidra3_${RUNDATE}_${hourR}.json  /scratch/jjerman/metSrvData/gribs/Hydra/Hidra_${RUNDATE}00.json
+</code></pre>
+<p>Kopira se tudi rezultate za nazaj,ker je na /scratch naštimano brisanje starejših datotek kot 2 dni:</p>
+<pre><code>cp -f /home/momo_si/results_oper/hidra3/hidra3_results/hidra3Files/Hidra_${YEAR}${month}*.json /scratch/jjerman/metSrvData/gribs/Hydra/ || true
+cp -f /home/momo_si/results_oper/hidra3/hidra3_results/hidra3Files/Hidra_${YEAR}${lastmonth}*.json /scratch/jjerman/metSrvData/gribs/Hydra/ || true
+</code></pre>
+<p>Ti rezultati so potem vidni izven ARSO preko Hidra apija.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../momo/" class="btn btn-neutral float-left" title="momo suite"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ecflow/" class="btn btn-neutral float-right" title="Ecflow okolje">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../momo/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ecflow/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

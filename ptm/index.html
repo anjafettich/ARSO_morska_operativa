@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Sledenje delcev - ARSO morska operativa</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Sledenje delcev";
+        var mkdocs_page_input_path = "ptm.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> ARSO morska operativa
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Operativne suite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../momo/">momo suite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../dinghy/">Hidra api</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ecflow/">Ecflow okolje</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tezave/">Morebitne težave</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Sledenje delcev</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#online-aplikacija">online aplikacija</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ecflow-suita">ecflow suita</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#nemo4">nemo4</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#nemo4nadr">nemo4NADR</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ptm_run">ptm_run</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#objind">objInd:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#oiltype">oilType:</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../validation/">Validacija</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arhiviranje/">Arhiviranje</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../susanovo/">Susanovo</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../todo/">To do</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">ARSO morska operativa</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Sledenje delcev</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="arso-sledenje-delcev">ARSO sledenje delcev</h1>
+<p>Opis skript za sledenje delcev.</p>
+<h2 id="online-aplikacija">online aplikacija</h2>
+<p><a href="http://forman.arso.sigov.si/momo_si/particle_tracking/index_wera.php">Sledenje delcev</a>.</p>
+<p>.php koda je na forman.arso.sigov.si: </p>
+<pre><code>/srv/www/htdocs/momo_si/particle_tracking/
+
+index.php
+show.php
+</code></pre>
+<p>Python, bash koda:</p>
+<pre><code>/home/momo_si/results_oper/particle_tracking/PTM
+
+run_particle_nadr.sh
+run_leeway_oil.py
+</code></pre>
+<p>Potrebne datoteke:</p>
+<pre><code>/home/momo_si/results_oper/particle_tracking/PTM
+
+domain_cfg_adr.nc
+domain_cfg_nadr.nc
+</code></pre>
+<p>Input (časovni merge za 12 dni nazaj in 3 dni napovedi za naprej):</p>
+<pre><code>/home/momo_si/oper/results/particle_tracking/NEMO_surface_input_PTM.nc
+/home/momo_si/oper/results/particle_tracking/NADR_surface_input_PTM.nc
+/home/momo_si/oper/results/particle_tracking/WERA_surface_input_PTM.nc
+</code></pre>
+<p>Preko ui-ja se submitta job, ki se ssh-a na felicio in tam gre v PBS.</p>
+<p>Rezultati na formanu (to je vidno ui-ju) - linki na rezultate na felicii:</p>
+<pre><code>/srv/www/htdocs/momo_si/particle_tracking
+</code></pre>
+<p>Rezultati na felicii:</p>
+<pre><code>/home/momo_si/results_oper/particle_tracking/PTM
+</code></pre>
+<p>Source koda:</p>
+<pre><code>/home/momo_si/opendrift_2022/opendrift
+</code></pre>
+<h2 id="ecflow-suita">ecflow suita</h2>
+<h3 id="nemo4">nemo4</h3>
+<pre><code>Priprava nemo datotek, potrebnih za sledenje delcev, kadar želimo pognati sledenje delcev za nazaj.
+</code></pre>
+<p>Vhodne parametre in nastavitve nastaviš v:</p>
+<pre><code>/home/momo/nemo4/ecflow/include/options.h
+
+export startdate=20240624
+export RUNDATE=20240624
+export enddaterun=20240624
+export iRun='hourly'
+</code></pre>
+<p>Če potrebuješ nemo datoteke za sledenje delcev (vzame iz /archive_dmf)</p>
+<pre><code>export iPTM=true
+</code></pre>
+<p>Če želiš nemoNADR, je potrebno najprej pognati nemo in pripraviti robne in začetne pogoje za nemoNADR. </p>
+<pre><code>export iNADR=true
+</code></pre>
+<h3 id="nemo4nadr">nemo4NADR</h3>
+<pre><code>Priprava nemoNADR datotek, potrebnih za sledenje delcev, kadar želimo pognati sledenje delcev za nazaj.
+</code></pre>
+<p>Vhodne parametre in nastavitve nastaviš v:</p>
+<pre><code>/home/momo/nemo4NADR/ecflow/include/options.h
+
+export startdate=20240624
+export RUNDATE=20240624
+export enddaterun=20240624
+</code></pre>
+<h3 id="ptm_run">ptm_run</h3>
+<pre><code>Zagon sledenja delcev za nazaj.
+</code></pre>
+<p>Najprej si moraš pripraviti vhodne podatke (nemo, nemoNADR ali wera). <br>
+Za tekoči mesec so podatki v: </p>
+<pre><code>/mnt/ceph/oper/momo_si/results/
+</code></pre>
+<p>Primer za nemo:</p>
+<p>Podatki za sledenje delcev (isto kot je potem v /archive_dmf)</p>
+<pre><code>/mnt/ceph/oper/momo_si/results/nemo/nemo_fc/2025/01/01/NEMO_ptm_20250101.tar.gz
+</code></pre>
+<p>Celotni nemo zagoni za tekoči mesec:</p>
+<pre><code>/mnt/ceph/oper/momo_si/results/nemo/nemo_results/
+</code></pre>
+<p>Tekoči podatki za ptm:</p>
+<pre><code>/mnt/ceph/oper/momo_si/results/particle_tracking/
+</code></pre>
+<p>Vhod v ptm:</p>
+<pre><code>NADR_surface_20250110.nc
+NEMO_surface_20250110.nc
+wera_surface_20250110.nc
+</code></pre>
+<p>Za dejanski vhod v PTM se naredi merge vseh datotek tipa NEMO_surface_DATUM.nc v NEMO_surface_input_PTM.nc in OpenDrift bere samo to datoteko.</p>
+<p>Podatke tipa <i> $model_surface_$RUNDATE.nc </i> skopiraš v:</p>
+<pre><code>/mnt/ceph/users/momo/PTM_input/
+</code></pre>
+<p>Vhodne parametre in nastavitve nastaviš v:</p>
+<pre><code>/home/momo/ptm_run/ecflow/include/options.h
+</code></pre>
+<p>Start date for simulation</p>
+<pre><code>export startdate=20241126
+</code></pre>
+<p>Starting hour for simulation</p>
+<pre><code>export starthour=11
+</code></pre>
+<p>Duration of simulation in hours</p>
+<pre><code>export numHours=3
+</code></pre>
+<p>Location</p>
+<pre><code>export lon=13.65
+export lat=45.63
+export domain='wera' # 'adr' ,'nadr' # 'wera' (only for Backtracking)
+</code></pre>
+<p>Object:</p>
+<pre><code>export objInd=99
+</code></pre>
+<p>For backtracking simulation set to True</p>
+<pre><code>export iBack=True
+</code></pre>
+<p>Only for oil: (objInd=99 )</p>
+<p>Duration of oil release (in hours):</p>
+<pre><code>export duration=0
+</code></pre>
+<p>Type of oil:  </p>
+<pre><code>export oilType=2
+</code></pre>
+<p>Oil mass:  </p>
+<pre><code>export oilMass=1000
+</code></pre>
+<hr />
+<h2 id="objind">objInd:<br></h2>
+<hr />
+<p>1 : oseba v vodi <br>
+5 : oseba v potapljaski obleki<br>
+6 : truplo<br>
+7 : resilni raft <br>
+41 : oseba v kajaku<br>
+42 : oseba s surf desko<br>
+43 : surfac z jamborom in jadrom v vodi<br>
+99 : oljni madez<br>
+74 : zabojnik<br></p>
+<hr />
+<hr />
+<h2 id="oiltype">oilType:<br></h2>
+<hr />
+<p>0 : UNKNOWN<br>
+1 : GENERIC LIGHT CRUDE<br>
+2 : GENERIC MEDIUM CRUDE<br>
+3 : GENERIC HEAVY CRUDE<br>
+4 : GENERIC DIESEL<br>
+5 : GENERIC FUEL OIL No. 6<br>
+6 : GENERIC FUEL OIL No.2<br>
+7 : GENERIC GASOLINE<br>
+8 : GENERIC HEAVY CRUDE<br>
+9 : GENERIC HEAVY FUEL OIL<br>
+10: GENERIC HOME HEATING OIL<br>
+11: GENERIC INTERMEDIATE FUEL OIL 180<br>
+12: GENERIC INTERMEDIATE FUEL OIL 300<br>
+13: GENERIC JET FUEL<br>
+14: GENERIC KEROSENE<br></p>
+<hr />
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../tezave/" class="btn btn-neutral float-left" title="Morebitne težave"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../validation/" class="btn btn-neutral float-right" title="Validacija">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../tezave/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../validation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
