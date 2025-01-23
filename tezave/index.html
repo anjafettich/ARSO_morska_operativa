@@ -235,9 +235,23 @@
 <b>Vzrok: </b>ni mountan sistem, kjer je ta direktorij, na primer /mnt/ceph/ <br>
 <b>Rešitev: </b> obvestiti BJ <br>
 </div>
+
+<p><br></p>
+<div style="border: 1px solid #ccc; padding: 10px;">
+<b>Suita:</b> get_initial/get_hourly_mfs <br>
+<b>Tip napake: </b>težave na CMEMS strani <br>
+<b>Težava:</b><br>
+ ERROR - 2025-01-23T02:25:05Z - Some of your subset selection [2025-01-25 00:00:00+00:00, 2025-01-26 00:00:00+00:00] for the time dimension exceed the dataset coordinates [2024-10-14 00:00:00+00:00, 2025-01-24 23:00:00+00:00]
+
+<b>Razlog: </b>ni podatkov na CMEMS <br>
+<b>Vzrok: </b>njihove težave <br>
+<b>Rešitev: </b> najprej preveriš na njihovi strani po acces data, če res ni podatkov, če jih ni, potem v rundir od get_inital skopiras zadnje podatke, ki jih imaš v naslednji dan, preko strani od CMEMS jih obvestiš o težavi, ker potem poanvadi hitro uredijo. <br>
+</div>
+
 <p><br></p>
 <ul>
 <li>ni robnih ali zacetnih pogojev</li>
+<li>odleti get_initial/get_mfsh/: pogledas v output, kaj je error </li>
 <li>cfl (pojavlja pri nemo_storm_surge - kopiraj rezultate iz ok memberja v memberja s cfl + restart datoteke)</li>
 <li>ob rebootu - preveriš jobe v pbs in killat jobe in poklikat v ecflow    </li>
 <li>Če pridejo nagios smsi za vse suite - verjetno tezava s cephom (resuje IT) - opozoris na signal Meteo Operativa in počakaš, da IT reši težavo - pridejo smsi, da je ok - potem greš pogledati, kaj se je zgodilo z jobi, ki so bli submitted v tem času - če so v ecflow zeleni (running), ni pa joba v PBS - treba jih je ročno kill-at in še enkrat pognat</li>
