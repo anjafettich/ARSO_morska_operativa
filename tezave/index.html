@@ -263,8 +263,11 @@ Preko strani od CMEMS jih obvestiš o težavi, ker potem ponavadi hitreje uredij
 ... <br>
 mpirun detected that one or more processes exited with non-zero status, thus causing<br>
 the job to be terminated. The first process to do so was:<br>
-Process name: [[29554,1],0] <br>
-Exit code:    123 <br>
+<br>
+  Process name: [[29554,1],0]<br>
+  Exit code:    123<br>
+
+
 <b>Težava:</b><br>
  V rundir vidis datoteke tipa output.abort_0*.nc. Najprej naredis rebuild teh datotek, da pogledaš vizualno, kje se pojavljajo čudne vrednosti, ki povzročijo CFL.<br>
  Skopiraš: /home/momo_si/oper/model/nemo/bin/rebuild* . (mora skopirati 2 datoteki, rebuild_nemo in rebuild_nemo.exe)<br>
