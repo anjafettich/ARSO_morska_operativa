@@ -269,7 +269,11 @@ the job to be terminated. The first process to do so was:<br>
 
 
 <b>Težava:</b><br>
- V rundir vidiš datoteke tipa output.abort_0*.nc. Najprej narediš rebuild teh datotek, da pogledaš vizualno, kje se pojavljajo čudne vrednosti, ki povzročijo CFL.<br>
+ V rundir vidiš datoteke tipa output.abort_0*.nc. Najverjetneje je težava v robnih ali začetnih pogojih, ki imajo prevelike vrednosti ali NaN-e. <br>
+<b>Razlog: </b>pokvarjene datoteke na CMEMS strani, ki so še vedno pravilne velikosti, samo imajo v določenih poljih čudne vrednosti. <br>
+<b>Vzrok: </b>njihove težave <br>
+<b>Rešitev: </b> 
+ Najprej narediš rebuild output.abort_*.nc datotek, da pogledaš vizualno, kje se pojavljajo čudne vrednosti, ki povzročijo CFL.<br>
  Skopiraš: <br>
  /home/momo_si/oper/model/nemo/bin/rebuild* . (mora skopirati 2 datoteki, rebuild_nemo in rebuild_nemo.exe)<br>
  Narediš rebuild: <br>
@@ -278,9 +282,7 @@ the job to be terminated. The first process to do so was:<br>
  Pogledaš vse datoteke z ncview (tukaj pazi, ker range v ncview lahko izgleda ok, napaka je lahko samo na eni globini, ostale so lahko ok).<br>
  Če odkriješ težavo v robnih pogojih, potem prenešene datoteke iz CMEMS niso ok.<br>
  V tem primeru jih obvestiš o težavi preko spletne strani (klepet, zahtevaš pogovor z osebo, ker sicer odgovarja bot). <br>
-<b>Razlog: </b>pokvarjene datoteke na CMEMS strani, ki so še vedno pravilne velikosti, samo imajo v določenih poljih čudne vrednosti. <br>
-<b>Vzrok: </b>njihove težave <br>
-<b>Rešitev: </b> Če so robni pogoji za določene termine ali spremenljivke ok, te pustiš, ostale skopiraš iz prejšnjega runa (včerajšnjega - iz mape bdy), v tem primeru manjkajo robni pogoji za zadnji dan napovedi (rundate + 2 dni), skopiras datoteke z zadnjim časovnim terminom v manjkajoči termin. <br>
+ Če so robni pogoji za določene termine ali spremenljivke ok, te pustiš, ostale skopiraš iz prejšnjega runa (včerajšnjega - iz mape bdy), v tem primeru manjkajo robni pogoji za zadnji dan napovedi (rundate + 2 dni), skopiras datoteke z zadnjim časovnim terminom v manjkajoči termin. <br>
 
 </div>
 
