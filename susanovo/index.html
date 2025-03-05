@@ -132,7 +132,9 @@
     module load netcdf/4.9.2/netcdf-parallel
     module load netcdf-fortran/4.6.1/intel/netcdff
 
-
+    WORKDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
+    BINDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
+    
     echo $LD_LIBRARY_PATH
     ulimit -c 0                #Tole je še kar pomembno, da s core fili ne zabašemo cele mašne
     #ulimit -s 102400 # 4200000     # v primeru nepojasnenih Segmentation violation problemov
