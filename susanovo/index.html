@@ -110,65 +110,65 @@
                 Navodila za prevajanje NEMO in XIOS so napisana v dokumentu na Teamsih: <a href=https://mnz-my.sharepoint.com/:w:/r/personal/anja_fettich_gov_si/Documents/SUSANOVO%20XIOS%20NEMO%20SETUP.docx?d=w16a3c88207894955825fa8ba8412d828&csf=1&web=1&e=3aUHcp> NEMO XIOS susanovo setup</a> <br>
                 Testna skripta za poganjanje NEMO:
 <pre><code>/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/run_nemo.sh</code></pre>
-  <pre><code>
-  #!/usr/bin/env bash
-  #SBATCH --nodes=1
-  #SBATCH --ntasks=192
-  #SBATCH --job-name=nemo
-  #SBATCH --output=nemo.out        
-  #SBATCH --error=nemo.err 
-  #SBATCH --time=00:40:00
-  #SBATCH --nodelist=compute13
+<pre><code>
+#!/usr/bin/env bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=192
+#SBATCH --job-name=nemo
+#SBATCH --output=nemo.out        
+#SBATCH --error=nemo.err 
+#SBATCH --time=00:40:00
+#SBATCH --nodelist=compute13
 
-  nXios=1
-  nProc=191
+nXios=1
+nProc=191
 
-  module purge
-  #module related stuff
-  export MODULESHOME=/sw/share/modules
-  export MODULEPATH=/sw/share/modules/modulefiles
+module purge
+#module related stuff
+export MODULESHOME=/sw/share/modules
+export MODULEPATH=/sw/share/modules/modulefiles
 
-  module load oneAPI/compiler/2024.2.1
-  module load hpcx/2.22/intel/2021.13.1/hpcx-mt-ompi
+module load oneAPI/compiler/2024.2.1
+module load hpcx/2.22/intel/2021.13.1/hpcx-mt-ompi
 
-  module load hdf5/1.14.5/intel/2021.13/hpcx-mpifort/2.22/hdf5-parallel
-  module load pnetcdf/1.12.3/pnetcdf
-  module load netcdf/4.9.2/netcdf-parallel
-  module load netcdf-fortran/4.6.1/intel/netcdff
+module load hdf5/1.14.5/intel/2021.13/hpcx-mpifort/2.22/hdf5-parallel
+module load pnetcdf/1.12.3/pnetcdf
+module load netcdf/4.9.2/netcdf-parallel
+module load netcdf-fortran/4.6.1/intel/netcdff
 
-  WORKDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
-  BINDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
+WORKDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
+BINDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
 
-  echo $LD_LIBRARY_PATH
-  ulimit -c 0                #Tole je še kar pomembno, da s core fili ne zabašemo cele mašne
-  #ulimit -s 102400 # 4200000     # v primeru nepojasnenih Segmentation violation problemov
-  ulimit -s unlimited
+echo $LD_LIBRARY_PATH
+ulimit -c 0                #Tole je še kar pomembno, da s core fili ne zabašemo cele mašne
+#ulimit -s 102400 # 4200000     # v primeru nepojasnenih Segmentation violation problemov
+ulimit -s unlimited
 
-  #
-  # openMPI
-  #
-  export OMPI_MCA_pml=ucx
-  export OMPI_MCA_btl=^openib
-  #export UCX_NET_DEVICES=mlx5_bond_0:1
-  #export UCX_NET_DEVICES=mlx5_0:1
-  export OMPI_MCA_pml=true
-  #
-  # OpenMP
-  #
-  export OMP_DYNAMIC=FALSE
-  export MKL_DYNAMIC=FALSE
-  export KMP_STACKSIZE=5000m
-  export KMP_MONITOR_STACKSIZE=5000m
-  export OMP_NUM_THREADS=1
-  #
-  export MALLOC_CHECK_=3
-  MPIEXEC=mpirun
+#
+# openMPI
+#
+export OMPI_MCA_pml=ucx
+export OMPI_MCA_btl=^openib
+#export UCX_NET_DEVICES=mlx5_bond_0:1
+#export UCX_NET_DEVICES=mlx5_0:1
+export OMPI_MCA_pml=true
+#
+# OpenMP
+#
+export OMP_DYNAMIC=FALSE
+export MKL_DYNAMIC=FALSE
+export KMP_STACKSIZE=5000m
+export KMP_MONITOR_STACKSIZE=5000m
+export OMP_NUM_THREADS=1
+#
+export MALLOC_CHECK_=3
+MPIEXEC=mpirun
 
 
-  export OMP_DISPLAY_ENV=TRUE
-  export OMP_PROC_BIND=TRUE
+export OMP_DISPLAY_ENV=TRUE
+export OMP_PROC_BIND=TRUE
 
-  $MPIEXEC --np $nProc --bind-to core --map-by numa --mca pml ucx --mca pml_base_verbose 1  $WORKDIR/nemo : --np $nXios $BINDIR/xios_server.exe
+$MPIEXEC --np $nProc --bind-to core --map-by numa --mca pml ucx --mca pml_base_verbose 1  $WORKDIR/nemo : --np $nXios $BINDIR/xios_server.exe
 </code></pre>
             </div>
           </div><footer>
