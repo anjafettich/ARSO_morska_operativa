@@ -134,7 +134,7 @@
 
     WORKDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
     BINDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
-    
+
     echo $LD_LIBRARY_PATH
     ulimit -c 0                #Tole je še kar pomembno, da s core fili ne zabašemo cele mašne
     #ulimit -s 102400 # 4200000     # v primeru nepojasnenih Segmentation violation problemov
@@ -155,10 +155,6 @@
     export MKL_DYNAMIC=FALSE
     export KMP_STACKSIZE=5000m
     export KMP_MONITOR_STACKSIZE=5000m
-
-    #export KMP_STACKSIZE=256m
-    #export KMP_MONITOR_STACKSIZE=256m
-
     export OMP_NUM_THREADS=1
     #
     export MALLOC_CHECK_=3
@@ -167,11 +163,6 @@
 
     export OMP_DISPLAY_ENV=TRUE
     export OMP_PROC_BIND=TRUE
-
-
-    # Record job ID
-    JOB_ID=$SLURM_JOB_ID
-    NTASKS=$SLURM_NTASKS
 
     $MPIEXEC --np $nProc --bind-to core --map-by numa --mca pml ucx --mca pml_base_verbose 1  $WORKDIR/nemo : --np $nXios $BINDIR/xios_server.exe
   </code></pre>
