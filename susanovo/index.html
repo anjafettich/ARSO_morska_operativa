@@ -106,6 +106,73 @@
               
                 <h1 id="susanovo-okolje">Susanovo okolje</h1>
                 <h2 id="nemo">NEMO</h2>
+                <pre><code>
+                #!/usr/bin/env bash
+                #SBATCH --nodes=1
+                #SBATCH --ntasks=192
+                #SBATCH --job-name=nemo
+                #SBATCH --output=nemo.out        
+                #SBATCH --error=nemo.err 
+                #SBATCH --time=00:40:00
+                #SBATCH --nodelist=compute13
+
+                nXios=1
+                nProc=191
+
+                module purge
+                #module related stuff
+                export MODULESHOME=/sw/share/modules
+                export MODULEPATH=/sw/share/modules/modulefiles
+
+                module load oneAPI/compiler/2024.2.1
+                module load hpcx/2.22/intel/2021.13.1/hpcx-mt-ompi
+
+                module load hdf5/1.14.5/intel/2021.13/hpcx-mpifort/2.22/hdf5-parallel
+                module load pnetcdf/1.12.3/pnetcdf
+                module load netcdf/4.9.2/netcdf-parallel
+                module load netcdf-fortran/4.6.1/intel/netcdff
+
+
+                echo $LD_LIBRARY_PATH
+                ulimit -c 0                #Tole je še kar pomembno, da s core fili ne zabašemo cele mašne
+                #ulimit -s 102400 # 4200000     # v primeru nepojasnenih Segmentation violation problemov
+                ulimit -s unlimited
+
+                #
+                # openMPI
+                #
+                export OMPI_MCA_pml=ucx
+                export OMPI_MCA_btl=^openib
+                #export UCX_NET_DEVICES=mlx5_bond_0:1
+                #export UCX_NET_DEVICES=mlx5_0:1
+                export OMPI_MCA_pml=true
+                #
+                # OpenMP
+                #
+                export OMP_DYNAMIC=FALSE
+                export MKL_DYNAMIC=FALSE
+                export KMP_STACKSIZE=5000m
+                export KMP_MONITOR_STACKSIZE=5000m
+
+                #export KMP_STACKSIZE=256m
+                #export KMP_MONITOR_STACKSIZE=256m
+
+                export OMP_NUM_THREADS=1
+                #
+                export MALLOC_CHECK_=3
+                MPIEXEC=mpirun
+
+
+                export OMP_DISPLAY_ENV=TRUE
+                export OMP_PROC_BIND=TRUE
+
+
+                # Record job ID
+                JOB_ID=$SLURM_JOB_ID
+                NTASKS=$SLURM_NTASKS
+
+                $MPIEXEC --np $nProc --bind-to core --map-by numa --mca pml ucx --mca pml_base_verbose 1  $WORKDIR/nemo : --np $nXios $BINDIR/xios_server.exe
+              </code></pre>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
