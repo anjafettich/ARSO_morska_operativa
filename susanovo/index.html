@@ -123,6 +123,8 @@
 nXios=1
 nProc=191
 
+ntasks=$((nProc + nXios))
+
 module purge
 #module related stuff
 export MODULESHOME=/sw/share/modules
@@ -168,7 +170,35 @@ MPIEXEC=mpirun
 export OMP_DISPLAY_ENV=TRUE
 export OMP_PROC_BIND=TRUE
 
+# Record job ID
+JOB_ID=$SLURM_JOB_ID
+NTASKS=$SLURM_NTASKS
+
+# Start timing
+START_TIME=$(date +%s)
+
 $MPIEXEC --np $nProc --bind-to core --map-by numa --mca pml ucx --mca pml_base_verbose 1  $WORKDIR/nemo : --np $nXios $BINDIR/xios_server.exe
+
+# End timing
+END_TIME=$(date +%s)
+
+# Calculate elapsed time
+ELAPSED_TIME=$((END_TIME - START_TIME))
+
+# Calculate elapsed time in minutes and seconds
+ELAPSED_TIME=$((END_TIME - START_TIME))
+ELAPSED_MIN=$((ELAPSED_TIME / 60))
+ELAPSED_SEC=$((ELAPSED_TIME % 60))
+
+# Log details
+echo "----------------------------------" >> runtime_log_${ntasks}cores.txt
+echo "Job ID: $JOB_ID" >> runtime_log_96cores.txt
+echo "Elapsed Time: ${ELAPSED_MIN} min ${ELAPSED_SEC} sec" >> runtime_log_${ntasks}cores.txt
+echo "nProc: $nProc" >> runtime_log_${ntasks}cores.txt
+echo "nXios: $nXios" >> runtime_log_${ntasks}cores.txt
+echo "ntasks: $NTASKS" >> runtime_log_${ntasks}cores.txt
+echo "----------------------------------" >> runtime_log_${ntasks}cores.txt
+
 </code></pre>
             </div>
           </div><footer>
