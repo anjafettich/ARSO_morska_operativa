@@ -201,7 +201,7 @@ ELAPSED_SEC=$((ELAPSED_TIME % 60))
 
 # Log details
 echo "----------------------------------" >> runtime_log_${NTASKS}cores.txt
-echo "Job ID: $JOB_ID" >> runtime_log_96cores.txt
+echo "Job ID: $JOB_ID" >> runtime_log_${NTASKS}cores.txt
 echo "Elapsed Time: ${ELAPSED_MIN} min ${ELAPSED_SEC} sec" >> runtime_log_${NTASKS}cores.txt
 echo "nProc: $nProc" >> runtime_log_${NTASKS}cores.txt
 echo "nXios: $nXios" >> runtime_log_${NTASKS}cores.txt
