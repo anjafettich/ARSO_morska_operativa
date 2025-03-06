@@ -119,11 +119,20 @@
 #SBATCH --error=nemo.err 
 #SBATCH --time=00:40:00
 #SBATCH --nodelist=compute13
+##SBATCH --mem=128GB
 
+# Record job ID
+JOB_ID=$SLURM_JOB_ID
+NTASKS=$SLURM_NTASKS
+
+# ntasks = nProc + nXios
 nXios=1
-nProc=191
+nProc=$((NTASKS - nXios))
 
-ntasks=$((nProc + nXios))
+WORKDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
+BINDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
+
+cd $WORKDIR
 
 module purge
 #module related stuff
@@ -138,8 +147,6 @@ module load pnetcdf/1.12.3/pnetcdf
 module load netcdf/4.9.2/netcdf-parallel
 module load netcdf-fortran/4.6.1/intel/netcdff
 
-WORKDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
-BINDIR=/home/fettich/momo_si/NEMOGCM_susanovo/release-4.2.0/cfgs/MY_AMM12_iFORT/EXP00/
 
 echo $LD_LIBRARY_PATH
 ulimit -c 0                #Tole je še kar pomembno, da s core fili ne zabašemo cele mašne
@@ -161,6 +168,10 @@ export OMP_DYNAMIC=FALSE
 export MKL_DYNAMIC=FALSE
 export KMP_STACKSIZE=5000m
 export KMP_MONITOR_STACKSIZE=5000m
+
+#export KMP_STACKSIZE=256m
+#export KMP_MONITOR_STACKSIZE=256m
+
 export OMP_NUM_THREADS=1
 #
 export MALLOC_CHECK_=3
@@ -170,14 +181,12 @@ MPIEXEC=mpirun
 export OMP_DISPLAY_ENV=TRUE
 export OMP_PROC_BIND=TRUE
 
-# Record job ID
-JOB_ID=$SLURM_JOB_ID
-NTASKS=$SLURM_NTASKS
-
 # Start timing
 START_TIME=$(date +%s)
 
 $MPIEXEC --np $nProc --bind-to core --map-by numa --mca pml ucx --mca pml_base_verbose 1  $WORKDIR/nemo : --np $nXios $BINDIR/xios_server.exe
+
+# --report-bindings --display-map
 
 # End timing
 END_TIME=$(date +%s)
@@ -191,13 +200,13 @@ ELAPSED_MIN=$((ELAPSED_TIME / 60))
 ELAPSED_SEC=$((ELAPSED_TIME % 60))
 
 # Log details
-echo "----------------------------------" >> runtime_log_${ntasks}cores.txt
+echo "----------------------------------" >> runtime_log_${NTASKS}cores.txt
 echo "Job ID: $JOB_ID" >> runtime_log_96cores.txt
-echo "Elapsed Time: ${ELAPSED_MIN} min ${ELAPSED_SEC} sec" >> runtime_log_${ntasks}cores.txt
-echo "nProc: $nProc" >> runtime_log_${ntasks}cores.txt
-echo "nXios: $nXios" >> runtime_log_${ntasks}cores.txt
-echo "ntasks: $NTASKS" >> runtime_log_${ntasks}cores.txt
-echo "----------------------------------" >> runtime_log_${ntasks}cores.txt
+echo "Elapsed Time: ${ELAPSED_MIN} min ${ELAPSED_SEC} sec" >> runtime_log_${NTASKS}cores.txt
+echo "nProc: $nProc" >> runtime_log_${NTASKS}cores.txt
+echo "nXios: $nXios" >> runtime_log_${NTASKS}cores.txt
+echo "ntasks: $NTASKS" >> runtime_log_${NTASKS}cores.txt
+echo "----------------------------------" >> runtime_log_${NTASKS}cores.txt
 
 </code></pre>
             </div>
